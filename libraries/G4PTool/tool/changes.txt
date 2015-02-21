@@ -1,0 +1,17 @@
+GUI Builder changes incorporated into 
+
+V2.5
+* GUIs created with earlier versions are not compatible with this version
+* Fully compatible with G4P v3.5
+  
+GPassword control added.
+
+Autohide - can use Ctrl+Shift+F5 to reopen design window.
+
+GUI Builder window closes when the parent editor (PDE) window closes.
+
+GUI Builder will not attempt to open a GUI created with an earlier, incompatible version of this tool. Instead the user is presented with a warning message.
+
+Can now use property grid to LOCK a control in the form view to avoid accidentally moving / resizing it with the mouse.
+
+Code generation does not use methods deprecated in G4P 3.5.
