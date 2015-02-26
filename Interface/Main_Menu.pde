@@ -61,16 +61,18 @@ void handleButtonEvents(GButton button, GEvent event) {
     cam.setMaximumDistance(500);
     mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
     gfx=new ToxiclibsSupport(wndSmltion.papplet);
- 
+
     wndSmltion.addDrawHandler(this, "wndSmltionDraw");
   }
 
   if (button == btnGrasp && event == GEvent.CLICKED) {
-    print ("Grasp");
+    println ("Grasp");
+    myPort.write("G");
   }
 
   if (button == btnRelease && event == GEvent.CLICKED) {
-    print ("Release");
+    println ("Release");
+    myPort.write("R");
   }
 }
 

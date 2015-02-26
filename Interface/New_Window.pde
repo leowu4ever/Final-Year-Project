@@ -36,7 +36,5 @@ void wndSmltionDraw(GWinApplet appc, GWinData data) {
     appc.strokeWeight(0.05);
     gfx.scale(new Vec3D(scale, scale, scale));
     gfx.mesh(mesh, false, 0);
-    
-    
+   
 }
-
