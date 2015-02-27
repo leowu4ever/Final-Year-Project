@@ -34,18 +34,17 @@ PeasyCam cam;
 TriangleMesh mesh;
 ToxiclibsSupport gfx;
 float scale = 2;
-float rX = mouseY*0.005;
-float rY = mouseX*0.005;
+
 
 void setup() {
   size(600, 600, P3D);
   smooth();
 
   cam = new PeasyCam(this, 100);
-  cam.setMinimumDistance(50);
-  cam.setMaximumDistance(500);
-  mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
-  //mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("mesh-flipped.stl"),STLReader.TRIANGLEMESH).flipYAxis();
+  cam.setMinimumDistance(300);
+  cam.setMaximumDistance(400);
+  //mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
+  mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"),STLReader.TRIANGLEMESH).flipYAxis();
   gfx=new ToxiclibsSupport(this);
 }
 
@@ -53,7 +52,6 @@ void draw() {
   background(0);
   lights();
 
- translate(width/2, height/2);
  
   //  rotateX(45);
 

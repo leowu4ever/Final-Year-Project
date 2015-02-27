@@ -25,12 +25,6 @@ void wndChartDraw(GWinApplet appc, GWinData data) {
 // draw simulation 
 void wndSmltionDraw(GWinApplet appc, GWinData data) {
   appc.lights();
-  //    cam = new PeasyCam(appc, 100);
-  //    cam.setMinimumDistance(50);
-  //    cam.setMaximumDistance(500);
-  //    mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
-  //    gfx=new ToxiclibsSupport(appc);
-  appc.translate(width, height);
   appc.strokeWeight(0.05);
   gfx.scale(new Vec3D(scale, scale, scale));
   gfx.mesh(mesh, false, 0);

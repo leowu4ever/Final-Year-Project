@@ -21,9 +21,7 @@ BarChart SenChart1, SenChart2, SenChart3, SenChart4, SenChart5, SenChart6;
 PeasyCam cam;
 TriangleMesh mesh;
 ToxiclibsSupport gfx;
-float scale = 2;
-float rX = mouseY*0.005;
-float rY = mouseX*0.005;
+float scale = 2.2;
 
 void setup() {
   size(200, 200, P3D);  
@@ -82,12 +80,11 @@ void initFloatList() {
 }
 
 void importMesh() {
-  cam = new PeasyCam(wndSmltion.papplet, 100);
-  cam.setMinimumDistance(50);
-  cam.setMaximumDistance(500);
+  cam = new PeasyCam(wndSmltion.papplet, 500);
+  cam.setMinimumDistance(250);
+  cam.setMaximumDistance(350);
   mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
   gfx=new ToxiclibsSupport(wndSmltion.papplet);
-  wndSmltion.addDrawHandler(this, "wndSmltionDraw");
 }
 
 void initSenCharts() {

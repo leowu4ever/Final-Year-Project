@@ -59,7 +59,9 @@ void handleButtonEvents(GButton button, GEvent event) {
     wndSmltion.setActionOnClose(GWindow.CLOSE_WINDOW);
     btnSmltion.setEnabled(false);
     // import 3d mesh
-    importMesh();
+    wndSmltion.addDrawHandler(this, "wndSmltionDraw");
+        importMesh();
+
   }
 
   // for grasp button 
@@ -74,3 +76,4 @@ void handleButtonEvents(GButton button, GEvent event) {
     myPort.write("R");        // do serial write to control Arduino
   }
 }
+
