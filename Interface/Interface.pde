@@ -13,9 +13,9 @@ Serial myPort;
 String value;        
 
 // data for each components
-FloatList sl1, sl2, slh, sr1, sr2, srh, s1, s2;        
+FloatList sl1, sl2, sr1, sr2, s1, s2;        
 // sensing data chart
-BarChart SenChart1, SenChart2, SenChart3, SenChart4, SenChart5, SenChart6;        
+BarChart SenChart1, SenChart2, SenChart3, SenChart4; 
 
 // for simulation 
 PeasyCam cam;
@@ -59,22 +59,18 @@ void parseData(String data) {
   // add individual data to corresponding intlist
   sl1.append(tempArray[0]);
   sl2.append(tempArray[1]);
-  slh.append(tempArray[2]);
-  sr1.append(tempArray[3]);
-  sr2.append(tempArray[4]);
-  srh.append(tempArray[5]);
-  s1.append(tempArray[6]);
-  s2.append(tempArray[7]);
+  sr1.append(tempArray[2]);
+  sr2.append(tempArray[3]);
+  s1.append(tempArray[4]);
+  s2.append(tempArray[5]);
 }
 
 // init all the intlists
 void initFloatList() {
   sl1 = new FloatList();
   sl2 = new FloatList();
-  slh = new FloatList();
   sr1 = new FloatList();
   sr2 = new FloatList();
-  srh = new FloatList();
   s1 = new FloatList();
   s2 = new FloatList();
 }
@@ -93,15 +89,13 @@ void initSenCharts() {
   SenChart2 = new BarChart(wndChart.papplet);
   SenChart3 = new BarChart(wndChart.papplet);
   SenChart4 = new BarChart(wndChart.papplet);
-  SenChart5 = new BarChart(wndChart.papplet);
-  SenChart6 = new BarChart(wndChart.papplet);
+
   // default setting for chart
   setUpCharts(SenChart1);
   setUpCharts(SenChart2);
   setUpCharts(SenChart3);
   setUpCharts(SenChart4);
-  setUpCharts(SenChart5);
-  setUpCharts(SenChart6);
+ 
 
   // update data in draw method
 }
@@ -115,19 +109,15 @@ void setUpCharts(BarChart chart) {
 void setChartData() {
   SenChart1.setData(sl1.array());
   SenChart2.setData(sl2.array());
-  SenChart3.setData(slh.array());
-  SenChart4.setData(sr1.array());
-  SenChart5.setData(sr2.array());
-  SenChart6.setData(srh.array());
+  SenChart3.setData(sr1.array());
+  SenChart4.setData(sr2.array());
 }
 
 void updateSenFloList() {
   checkDeleteSenData (sl1);
   checkDeleteSenData (sl2);
-  checkDeleteSenData (slh);
   checkDeleteSenData (sr1);
   checkDeleteSenData (sr2);
-  checkDeleteSenData (srh);
 }
 
 void checkDeleteSenData(FloatList SenFloList ) {
