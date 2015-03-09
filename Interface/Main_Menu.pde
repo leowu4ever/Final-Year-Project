@@ -5,7 +5,6 @@
 // main menu
 GButton btnManual;
 GButton btnChart;
-GButton btnSmltion;
 
 // Manual Control 
 GButton btnGrasp;
@@ -14,7 +13,6 @@ GButton btnRelease;
 // Windows
 GWindow wndManual;
 GWindow wndChart;
-GWindow wndSmltion;
 
 int btnWidth = 200;
 int btnHeight = 30;
@@ -22,7 +20,6 @@ int btnHeight = 30;
 void createMainMenu() {
   btnManual = new GButton (this, 0, 0, btnWidth, btnHeight, "Manual Control");
   btnChart = new GButton (this, 0, btnHeight, btnWidth, btnHeight, "Sensing Data Chart");
-  btnSmltion = new GButton (this, 0, btnHeight*2, btnWidth, btnHeight, "Simulation");
 }
 
 void handleButtonEvents(GButton button, GEvent event) {
@@ -50,19 +47,6 @@ void handleButtonEvents(GButton button, GEvent event) {
     wndChart.addDrawHandler(this, "wndChartDraw");
   }
 
-
-  // create simulation window 
-  if (button == btnSmltion && event == GEvent.CLICKED && wndSmltion == null) {
-    wndSmltion = new GWindow(this, "Simulation", 0, 0, 600, 600, false, P3D);
-    wndSmltion.setBackground(0);
-    wndSmltion.setOnTop(false);
-    wndSmltion.setActionOnClose(GWindow.CLOSE_WINDOW);
-    btnSmltion.setEnabled(false);
-    // import 3d mesh
-    wndSmltion.addDrawHandler(this, "wndSmltionDraw");
-        importMesh();
-
-  }
 
   // for grasp button 
   if (button == btnGrasp && event == GEvent.CLICKED) {

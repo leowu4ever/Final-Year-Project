@@ -4,10 +4,6 @@
 import g4p_controls.*;
 import processing.serial.*;
 import org.gicentre.utils.stat.*;        // For chart classes.
-import peasy.*;
-import toxi.geom.*;
-import toxi.geom.mesh.*;
-import toxi.processing.*;
 
 Serial myPort;       
 String value;        
@@ -16,12 +12,6 @@ String value;
 FloatList sl1, sl2, sr1, sr2, s1, s2;        
 // sensing data chart
 BarChart SenChart1, SenChart2, SenChart3, SenChart4; 
-
-// for simulation 
-PeasyCam cam;
-TriangleMesh mesh;
-ToxiclibsSupport gfx;
-float scale = 2.2;
 
 void setup() {
   size(200, 200, P3D);  
@@ -75,13 +65,6 @@ void initFloatList() {
   s2 = new FloatList();
 }
 
-void importMesh() {
-  cam = new PeasyCam(wndSmltion.papplet, 500);
-  cam.setMinimumDistance(250);
-  cam.setMaximumDistance(350);
-  mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("bumps_deformed.STL"), STLReader.TRIANGLEMESH);
-  gfx=new ToxiclibsSupport(wndSmltion.papplet);
-}
 
 void initSenCharts() {
   // init chart object 
@@ -95,7 +78,7 @@ void initSenCharts() {
   setUpCharts(SenChart2);
   setUpCharts(SenChart3);
   setUpCharts(SenChart4);
- 
+
 
   // update data in draw method
 }

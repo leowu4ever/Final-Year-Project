@@ -16,14 +16,5 @@ void wndChartDraw(GWinApplet appc, GWinData data) {
   SenChart2.draw(appc.width/2, 0, appc.width/2, appc.height/2);
   SenChart3.draw(0, appc.height/2, appc.width/2, appc.height/2);
   SenChart4.draw(appc.width/2, appc.height/2, appc.width/2, appc.height/2);
-
-}
-
-// draw simulation 
-void wndSmltionDraw(GWinApplet appc, GWinData data) {
-  appc.lights();
-  appc.strokeWeight(0.05);
-  gfx.scale(new Vec3D(scale, scale, scale));
-  gfx.mesh(mesh, false, 0);
 }
 
