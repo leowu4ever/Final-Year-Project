@@ -14,12 +14,13 @@ GButton btnRelease;
 GWindow wndManual;
 GWindow wndChart;
 
-int btnWidth = 200;
+int btnWidth = 100;
 int btnHeight = 30;
 
 void createMainMenu() {
-  btnManual = new GButton (this, 0, 0, btnWidth, btnHeight, "Manual Control");
-  btnChart = new GButton (this, 0, btnHeight, btnWidth, btnHeight, "Sensing Data Chart");
+  GLabel Title = new GLabel(this, 0, 0, 300, 100, "Robotic Fingers Interface\n\nFinal Year Project\n(Liqun Wu)");
+  // btnManual = new GButton (this, 0, 0, btnWidth, btnHeight, "Manual Control");
+  btnChart = new GButton (this, 100, 100, btnWidth, btnHeight, "Start");
 }
 
 void handleButtonEvents(GButton button, GEvent event) {
@@ -27,8 +28,9 @@ void handleButtonEvents(GButton button, GEvent event) {
   if (button == btnManual && event == GEvent.CLICKED && wndManual == null) {
     wndManual = new GWindow(this, "Manual Control", 0, 0, 300, 300, false, JAVA2D);
     wndManual.setBackground(255);
-    btnGrasp = new GButton (wndManual.papplet, 0, 0, btnWidth, btnHeight, "Grasp");
-    btnRelease = new GButton (wndManual.papplet, 0, btnHeight, btnWidth, btnHeight, "Release");
+
+    //  btnGrasp = new GButton (wndManual.papplet, 0, 0, btnWidth, btnHeight, "Grasp");
+    //  btnRelease = new GButton (wndManual.papplet, 0, btnHeight, btnWidth, btnHeight, "Release");
     wndManual.setOnTop(false);
     wndManual.setActionOnClose(GWindow.CLOSE_WINDOW);
     btnManual.setEnabled(false);
@@ -37,8 +39,12 @@ void handleButtonEvents(GButton button, GEvent event) {
 
   // create sensing data charts window 
   if (button == btnChart && event == GEvent.CLICKED && wndChart == null) {
-    wndChart = new GWindow(this, "Sensing Data Chart", 0, 0, 600, 400, false, JAVA2D);
+    wndChart = new GWindow(this, "Interface", 0, 0, 600, 580, false, JAVA2D);
     wndChart.setBackground(255);
+    GLabel Title = new GLabel(wndChart.papplet, 150, 0, 300, 40, "Tactile Sensation Data & Manual Control");
+
+    btnGrasp = new GButton (wndChart.papplet, 195, 545, btnWidth, btnHeight, "Grasp");
+    btnRelease = new GButton (wndChart.papplet, 305, 545, btnWidth, btnHeight, "Release");
     wndChart.setOnTop(false);
     wndChart.setActionOnClose(GWindow.CLOSE_WINDOW);
     btnChart.setEnabled(false);
@@ -46,7 +52,6 @@ void handleButtonEvents(GButton button, GEvent event) {
     // add drawHandler after init the chart to avoid nullPointerException
     wndChart.addDrawHandler(this, "wndChartDraw");
   }
-
 
   // for grasp button 
   if (button == btnGrasp && event == GEvent.CLICKED) {

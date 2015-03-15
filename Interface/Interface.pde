@@ -14,7 +14,7 @@ FloatList sl1, sl2, sr1, sr2, s1, s2;
 BarChart SenChart1, SenChart2, SenChart3, SenChart4; 
 
 void setup() {
-  size(200, 200, P3D);  
+  size(300, 160, P2D);  
   smooth();
   createMainMenu();
   initFloatList();
@@ -65,7 +65,6 @@ void initFloatList() {
   s2 = new FloatList();
 }
 
-
 void initSenCharts() {
   // init chart object 
   SenChart1 = new BarChart(wndChart.papplet);
@@ -78,15 +77,13 @@ void initSenCharts() {
   setUpCharts(SenChart2);
   setUpCharts(SenChart3);
   setUpCharts(SenChart4);
-
-
-  // update data in draw method
 }
 
 void setUpCharts(BarChart chart) {
+  //chart.setBarGap(3);
   chart.showValueAxis(true);
-  chart.showCategoryAxis(true);
   chart.setMinValue(0);
+  chart.setMaxValue(600);
 }
 
 void setChartData() {
@@ -97,14 +94,14 @@ void setChartData() {
 }
 
 void updateSenFloList() {
-  checkDeleteSenData (sl1);
-  checkDeleteSenData (sl2);
-  checkDeleteSenData (sr1);
-  checkDeleteSenData (sr2);
+  checkDeleteSenData(sl1);
+  checkDeleteSenData(sl2);
+  checkDeleteSenData(sr1);
+  checkDeleteSenData(sr2);
 }
 
 void checkDeleteSenData(FloatList SenFloList ) {
-  if (SenFloList.size() == 1000) {
+  if (SenFloList.size() == 2000) {
     SenFloList.clear();
   }
 }
