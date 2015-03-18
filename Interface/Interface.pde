@@ -1,28 +1,22 @@
-/**
- 
- */
 import g4p_controls.*;
 import processing.serial.*;
-import org.gicentre.utils.stat.*;        // For chart classes.
+import org.gicentre.utils.stat.*;      
 
 Serial myPort;       
 String value;        
 
-// data for each components
-FloatList sl1, sl2, sr1, sr2, s1, s2;        
-// sensing data chart
+FloatList sl1, sl2, sr1, sr2, s1, s2;  // store incoming data    
 BarChart SenChart1, SenChart2, SenChart3, SenChart4; 
 
 void setup() {
   size(300, 160, P2D);  
   smooth();
-  createMainMenu();
+  createMainWnd();
   initFloatList();
-
-  // Print a list of the serial ports, for debugging purposes
-  print(Serial.list());  
+  print(Serial.list());  // print all ports
   myPort = new Serial(this, Serial.list()[2], 9600);
-  myPort.bufferUntil('\n');
+  //  start to read data when meets a line break
+  myPort.bufferUntil('\n');  
 }
 
 void draw() {
@@ -30,11 +24,9 @@ void draw() {
   if (value != null) 
   {
     println(value);     
-    // get rid of whitespace  
-    value = trim(value);   
+    value = trim(value);      // get rid of whitespace
     updateSenFloList();
     parseData(value);
-    // update data for graph
   }
 }
 
@@ -55,7 +47,7 @@ void parseData(String data) {
   s2.append(tempArray[5]);
 }
 
-// init all the intlists
+// initialise all the float lists
 void initFloatList() {
   sl1 = new FloatList();
   sl2 = new FloatList();
@@ -65,20 +57,20 @@ void initFloatList() {
   s2 = new FloatList();
 }
 
+// initialise chart objects 
 void initSenCharts() {
-  // init chart object 
   SenChart1 = new BarChart(wndChart.papplet);
   SenChart2 = new BarChart(wndChart.papplet);
   SenChart3 = new BarChart(wndChart.papplet);
   SenChart4 = new BarChart(wndChart.papplet);
 
-  // default setting for chart
   setUpCharts(SenChart1);
   setUpCharts(SenChart2);
   setUpCharts(SenChart3);
   setUpCharts(SenChart4);
 }
 
+// default setting for chart
 void setUpCharts(BarChart chart) {
   //chart.setBarGap(3);
   chart.showValueAxis(true);
@@ -100,9 +92,8 @@ void updateSenFloList() {
   checkDeleteSenData(sr2);
 }
 
-void checkDeleteSenData(FloatList SenFloList ) {
+void checkDeleteSenData(FloatList SenFloList) {
   if (SenFloList.size() == 2000) {
     SenFloList.clear();
   }
 }
-

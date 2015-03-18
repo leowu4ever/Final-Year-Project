@@ -1,53 +1,28 @@
-/**
- 
- */
-
-// main menu
-GButton btnManual;
-GButton btnChart;
-
-// Manual Control 
+GButton btnStart;
 GButton btnGrasp;
 GButton btnRelease;
-
-// Windows
 GWindow wndManual;
 GWindow wndChart;
 
 int btnWidth = 100;
 int btnHeight = 30;
 
-void createMainMenu() {
+// create UI for main window
+void createMainWnd() {
   GLabel Title = new GLabel(this, 0, 0, 300, 100, "Robotic Fingers Interface\n\nFinal Year Project\n(Liqun Wu)");
-  // btnManual = new GButton (this, 0, 0, btnWidth, btnHeight, "Manual Control");
-  btnChart = new GButton (this, 100, 100, btnWidth, btnHeight, "Start");
+  btnStart = new GButton (this, 100, 100, btnWidth, btnHeight, "Start");
 }
 
+// handle button events
 void handleButtonEvents(GButton button, GEvent event) {
-  // create manual control window
-  if (button == btnManual && event == GEvent.CLICKED && wndManual == null) {
-    wndManual = new GWindow(this, "Manual Control", 0, 0, 300, 300, false, JAVA2D);
-    wndManual.setBackground(255);
-
-    //  btnGrasp = new GButton (wndManual.papplet, 0, 0, btnWidth, btnHeight, "Grasp");
-    //  btnRelease = new GButton (wndManual.papplet, 0, btnHeight, btnWidth, btnHeight, "Release");
-    wndManual.setOnTop(false);
-    wndManual.setActionOnClose(GWindow.CLOSE_WINDOW);
-    btnManual.setEnabled(false);
-    wndManual.addDrawHandler(this, "wndManualDraw");
-  }
-
-  // create sensing data charts window 
-  if (button == btnChart && event == GEvent.CLICKED && wndChart == null) {
-    wndChart = new GWindow(this, "Interface", 0, 0, 600, 580, false, JAVA2D);
+  
+  if (button == btnStart && event == GEvent.CLICKED && wndChart == null) {
+    wndChart = new GWindow(this, "Interface", 0, 0, 600, 580, false, JAVA2D);      // create window 
     wndChart.setBackground(255);
     GLabel Title = new GLabel(wndChart.papplet, 150, 0, 300, 40, "Tactile Sensation Data & Manual Control");
-
     btnGrasp = new GButton (wndChart.papplet, 195, 545, btnWidth, btnHeight, "Grasp");
     btnRelease = new GButton (wndChart.papplet, 305, 545, btnWidth, btnHeight, "Release");
-    wndChart.setOnTop(false);
     wndChart.setActionOnClose(GWindow.CLOSE_WINDOW);
-    btnChart.setEnabled(false);
     initSenCharts();
     // add drawHandler after init the chart to avoid nullPointerException
     wndChart.addDrawHandler(this, "wndChartDraw");
@@ -64,5 +39,28 @@ void handleButtonEvents(GButton button, GEvent event) {
     println ("Release");
     myPort.write("R");        // do serial write to control Arduino
   }
+}
+
+// draw sensing data charts
+void wndChartDraw(GWinApplet appc, GWinData data) {
+  // set mergins
+  float xMergin = appc.width*0.01;
+  float yMergin = appc.height*0.015; 
+  float chartWidth = appc.width/2 -xMergin;
+  float chartHeight = (appc.height-80)/2 -yMergin;  
+
+  // draw new grids from top to bottom
+  appc.line(0, 40, appc.width, 40);
+  appc.line(0, 290, appc.width, 290);
+  appc.line(0, 540, appc.width, 540);
+  appc.line(appc.width/2, 40, appc.width/2, 540);
+  appc.textSize(10);
+
+  setChartData();
+  // draw charts 
+  SenChart1.draw(0+xMergin, 40, chartWidth, chartHeight);
+  SenChart2.draw(appc.width/2+xMergin, 40, chartWidth, chartHeight);
+  SenChart3.draw(0+xMergin, appc.height/2, chartWidth, chartHeight);
+  SenChart4.draw(appc.width/2+xMergin, appc.height/2, chartWidth, chartHeight);
 }
 

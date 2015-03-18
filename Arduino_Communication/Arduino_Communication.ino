@@ -45,7 +45,7 @@ void loop()
 
   Serial.print(sl2);
   Serial.print(",");
-  
+
   Serial.print(sr1);
   Serial.print(",");
 
@@ -54,21 +54,20 @@ void loop()
 
   Serial.print(s1);
   Serial.print(",");
-  
+
   Serial.println(s2);
   //println("sl1: " + sl1 + "sl2: " + sl2 + "slh: " + slh + "sr1: " + sr1 + "sr2: " + sr2 + "srh: " + srh + "s1: " + s1 + "s2: " + s2);
   // }
   if (data == "R") {
     servo1.write(0);
     servo2.write(0);
-
-
   }
   if (data == "G") {
     servo1.write(95);
     servo2.write(150);
   }
 }
+
 
 
 
