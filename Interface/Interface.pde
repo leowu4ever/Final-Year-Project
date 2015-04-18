@@ -1,3 +1,17 @@
+/**
+ * Final year project
+ *
+ * Interface which controls robotic hand and displays
+ * tactile sensing data
+ *
+ * The public libraries used are G4P, giCentre and Processing serial
+ * G4P (http://www.lagers.org.uk/g4p/download.html)
+ * giCentre (http://www.gicentre.net/software/#/utils/)
+ * Processing (https://www.processing.org/download/?processing)
+ 
+ * @author Liqun Wu (1242421)
+ */
+ 
 import g4p_controls.*;
 import processing.serial.*;
 import org.gicentre.utils.stat.*;      
@@ -24,7 +38,7 @@ void draw() {
   if (value != null) 
   {
     println(value);     
-    value = trim(value);      // get rid of whitespace
+    value = trim(value);  // get rid of whitespace
     updateSenFloList();
     parseData(value);
   }
@@ -78,6 +92,7 @@ void setUpCharts(BarChart chart) {
   chart.setMaxValue(600);
 }
 
+// set the datat to the charts 
 void setChartData() {
   SenChart1.setData(sl1.array());
   SenChart2.setData(sl2.array());
@@ -85,6 +100,7 @@ void setChartData() {
   SenChart4.setData(sr2.array());
 }
 
+// update the sensing data 
 void updateSenFloList() {
   checkDeleteSenData(sl1);
   checkDeleteSenData(sl2);
@@ -92,6 +108,7 @@ void updateSenFloList() {
   checkDeleteSenData(sr2);
 }
 
+// wipe the sensing data when the size is 2000
 void checkDeleteSenData(FloatList SenFloList) {
   if (SenFloList.size() == 2000) {
     SenFloList.clear();
